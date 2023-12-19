@@ -7,6 +7,9 @@ df = pd.read_csv('data.csv')
 # Create a Streamlit app
 st.title("🐍 Snake and Ladder RNG 🎲")
 
+# Remove NaN values from the 'Level' column
+levels = df['Level'].dropna().unique()
+
 # Initialize session state variables
 if 'question_generated' not in st.session_state:
     st.session_state.question_generated = False
@@ -23,7 +26,7 @@ if 'current_question' not in st.session_state:
 # Form to structure layout
 with st.form("main_form"):
     # Prompt user for difficulty level
-    difficulty = st.selectbox("Select Level", df['Level'].unique())
+    difficulty = st.selectbox("Select Level", levels)
 
     # Filter data based on difficulty level
     filtered_df = df[df['Level'] == difficulty]
