@@ -2,8 +2,10 @@ import streamlit as st
 import pandas as pd
 import random
 
-# Load the data from the Excel file
-df = pd.read_csv('Snake_and_ladder_games.csv')
+import os 
+
+if os.path.exists('./Snake_and_ladder_games.csv'): 
+    df = pd.read_csv('Snake_and_ladder_games.csv', index_col=None)
 
 # Create a Streamlit app
 st.title("Snake and Ladder RNG")
