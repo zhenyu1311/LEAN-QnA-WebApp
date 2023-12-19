@@ -3,7 +3,7 @@ import pandas as pd
 import random
 
 # Load the data from the Excel file
-df = pd.read_csv('C:\\Users\\zheny\\OneDrive\\Desktop\\SnL\\Snake and ladder games.csv')
+df = pd.read_csv('Snake_and_ladder_games.csv')
 
 # Create a Streamlit app
 st.title("Snake and Ladder RNG")
