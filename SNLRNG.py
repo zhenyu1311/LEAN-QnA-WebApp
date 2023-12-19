@@ -4,8 +4,8 @@ import random
 
 import os 
 
-if os.path.exists('./Snake_and_ladder_games.csv'): 
-    df = pd.read_csv('Snake_and_ladder_games.csv', index_col=None)
+if os.path.exists('./data.csv'): 
+    df = pd.read_csv('data.csv', index_col=None)
 
 # Create a Streamlit app
 st.title("Snake and Ladder RNG")
