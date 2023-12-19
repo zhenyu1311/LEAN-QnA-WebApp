@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import random
 
-import os 
-
-if os.path.exists('./data.csv'): 
-    df = pd.read_csv('data.csv', index_col=None)
+df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
 st.title("Snake and Ladder RNG")
