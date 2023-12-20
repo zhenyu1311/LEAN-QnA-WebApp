@@ -67,8 +67,12 @@ if generate_button:
     question_number = filtered_df.iloc[st.session_state.question_index]['No.']
     question_text = filtered_df.iloc[st.session_state.question_index]['True or False - Question']
     st.session_state.current_question = f"{question_number} - {question_text}"
-    st.write("🤔 Question:")
-    st.write(st.session_state.current_question)
+    st.markdown("""
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+        <h3>🤔 Question:</h3>
+        <p>{}</p>
+    </div>
+    """.format(st.session_state.current_question), unsafe_allow_html=True)
 
 # Buttons for user to answer the question
 if st.session_state.question_generated:
@@ -126,16 +130,28 @@ if show_answer_button and st.session_state.question_generated:
     st.session_state.show_answer_and_explanation = True
 
     # Display the question
-    st.write("🤔 Question:")
-    st.write(st.session_state.current_question)
+    st.markdown("""
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+        <h3>🤔 Question:</h3>
+        <p>{}</p>
+    </div>
+    """.format(st.session_state.current_question), unsafe_allow_html=True)
 
     # Display the answer
-    st.markdown("📚 Answer:")
-    st.markdown(filtered_df.iloc[st.session_state.question_index]['T/F'])
+    st.markdown("""
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+        <h3>📚 Answer:</h3>
+        <p>{}</p>
+    </div>
+    """.format(filtered_df.iloc[st.session_state.question_index]['T/F']), unsafe_allow_html=True)
 
     # Display the explanation
-    st.markdown("🔍 Explanation:")
-    st.markdown(filtered_df.iloc[st.session_state.question_index]['Answer'])
+    st.markdown("""
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+        <h3>🔍 Explanation:</h3>
+        <p>{}</p>
+    </div>
+    """.format(filtered_df.iloc[st.session_state.question_index]['Answer']), unsafe_allow_html=True)
 
 # Button to reset
 reset_button = st.button("Reset")
@@ -145,6 +161,9 @@ if reset_button:
     st.session_state.question_index = 0
     st.session_state.show_answer_and_explanation = False
     st.session_state.current_question = ""
+    st.session_state.selected_level = None
+    st.session_state.selected_topic = None
+
 
 
 
