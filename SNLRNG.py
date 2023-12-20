@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas as pd
 import random
+"""
+Created on Tue Dec 19 2023
+@author: He Zhenyu , GitHub ID: zhenyu1311
+@Bollore Logistics Asia-Pacific , Supply Chain Management Intern , He Zhenyu
 
+Last Update on Wed Dec 20 2023 2:30pm
+"""
 df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
-st.title("🐍 Snake and Ladder RNG verson 2.1 🎲")
+st.title("🐍 Snake and Ladder RNG verson 🎲")
 
 # Initialize session state variables
 if 'question_generated' not in st.session_state:
