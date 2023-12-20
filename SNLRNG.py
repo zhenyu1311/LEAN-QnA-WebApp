@@ -9,12 +9,10 @@ import streamlit as st
 import pandas as pd
 import random
 
-
-
 df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
-st.title("🐍 Snake and Ladder RNG verson 🎲")
+st.title("🐍 Snake and Ladder RNG 🎲")
 
 # Initialize session state variables
 if 'question_generated' not in st.session_state:
@@ -35,23 +33,25 @@ if 'selected_level' not in st.session_state:
 if 'selected_topic' not in st.session_state:
     st.session_state.selected_topic = None
 
-# Prompt user for difficulty level
-selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
+# Form to structure layout
+with st.form("main_form"):
+    # Prompt user for difficulty level
+    selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
 
-# Save selected level in session state
-st.session_state.selected_level = selected_level
+    # Save selected level in session state
+    st.session_state.selected_level = selected_level
 
-# Filter data based on difficulty level
-filtered_df = df[df['Level'] == st.session_state.selected_level]
+    # Filter data based on difficulty level
+    filtered_df = df[df['Level'] == st.session_state.selected_level]
 
-# Prompt user for category
-selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique())
+    # Prompt user for category
+    selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique())
 
-# Save selected topic in session state
-st.session_state.selected_topic = selected_topic
+    # Save selected topic in session state
+    st.session_state.selected_topic = selected_topic
 
-# Button to generate question
-generate_button = st.button("Generate Question")
+    # Button to generate question
+    generate_button = st.form_submit_button("Generate Question")
 
 # Generate a new question when the "Generate Question" button is clicked
 if generate_button:
