@@ -33,8 +33,18 @@ if 'selected_level' not in st.session_state:
 if 'selected_topic' not in st.session_state:
     st.session_state.selected_topic = None
 
+# Box to group elements
+st.markdown("""
+<div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+    <h2>Select Level and Topic</h2>
+    <p>Choose a level, a topic, and click 'Generate Question.'</p>
+    
+    <!-- Prompt user for difficulty level -->
+    <h3>Select Level</h3>
+    """, unsafe_allow_html=True)
+
 # Prompt user for difficulty level
-selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
+selected_level = st.selectbox("", df['Level'].dropna().unique())
 
 # Save selected level in session state
 st.session_state.selected_level = selected_level
@@ -68,7 +78,7 @@ if generate_button:
     question_text = filtered_df.iloc[st.session_state.question_index]['True or False - Question']
     st.session_state.current_question = f"{question_number} - {question_text}"
     st.markdown("""
-    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; margin-top: 10px;">
         <h3>🤔 Question:</h3>
         <p>{}</p>
     </div>
@@ -108,7 +118,7 @@ if st.session_state.question_generated:
             user_answer = False
             correct_answer = str(filtered_df.iloc[st.session_state.question_index]['T/F'])
 
-            # Convert both to lowercase for case-insensitive comparison
+# Convert both to lowercase for case-insensitive comparison
             user_answer_str = str(user_answer).lower()
             correct_answer_str = correct_answer.lower()
 
@@ -131,7 +141,7 @@ if show_answer_button and st.session_state.question_generated:
 
     # Display the question
     st.markdown("""
-    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; margin-top: 10px;">
         <h3>🤔 Question:</h3>
         <p>{}</p>
     </div>
@@ -139,7 +149,7 @@ if show_answer_button and st.session_state.question_generated:
 
     # Display the answer
     st.markdown("""
-    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; margin-top: 10px;">
         <h3>📚 Answer:</h3>
         <p>{}</p>
     </div>
@@ -147,7 +157,7 @@ if show_answer_button and st.session_state.question_generated:
 
     # Display the explanation
     st.markdown("""
-    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+    <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; margin-top: 10px;">
         <h3>🔍 Explanation:</h3>
         <p>{}</p>
     </div>
