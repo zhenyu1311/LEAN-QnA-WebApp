@@ -45,7 +45,7 @@ with st.form("main_form"):
     filtered_df = df[df['Level'] == st.session_state.selected_level]
 
     # Prompt user for category
-    selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique())
+    selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique(), key='topic')
 
     # Save selected topic in session state
     st.session_state.selected_topic = selected_topic
@@ -72,7 +72,7 @@ if generate_button:
     st.write("🤔 Question:")
     st.write(st.session_state.current_question)
 
-# Buttons for user to answer the question
+# Buttons for the user to answer the question
 if st.session_state.question_generated:
     # Use columns to place buttons side by side
     col1, col2 = st.columns(2)
@@ -114,7 +114,7 @@ if st.session_state.question_generated:
             if user_answer_str == correct_answer_str:
                 result_message = "✅ Correct! Well done! 🎉"
             else:
-                result_message = f"❌ Wrong.The correct answer is {correct_answer}."
+                result_message = f"❌ Wrong. The correct answer is {correct_answer}."
 
             st.write(f"Your Answer: {user_answer}")
             st.write(result_message)
@@ -147,5 +147,6 @@ if reset_button:
     st.session_state.question_index = 0
     st.session_state.show_answer_and_explanation = False
     st.session_state.current_question = ""
+
 
 
