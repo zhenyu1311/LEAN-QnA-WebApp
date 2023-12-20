@@ -1,19 +1,11 @@
 import streamlit as st
 import pandas as pd
 import random
-"""
-Created on Wed Dec 20 10:16:30 2023
 
-@author: He Zhenyu , github id:zhenyu1311
-@Created for Bollore Logistics Asia-Pacific , Supply Chain Management Intern
-"""
 df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
 st.title("🐍 Snake and Ladder RNG 🎲")
-
-# Remove NaN values from the 'Level' column
-levels = df['Level'].dropna().unique()
 
 # Initialize session state variables
 if 'question_generated' not in st.session_state:
@@ -28,13 +20,19 @@ if 'show_answer_and_explanation' not in st.session_state:
 if 'current_question' not in st.session_state:
     st.session_state.current_question = ""
 
+if 'selected_level' not in st.session_state:
+    st.session_state.selected_level = None
+
 # Form to structure layout
 with st.form("main_form"):
     # Prompt user for difficulty level
-    difficulty = st.selectbox("Select Level", levels)
+    selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
+
+    # Save selected level in session state
+    st.session_state.selected_level = selected_level
 
     # Filter data based on difficulty level
-    filtered_df = df[df['Level'] == difficulty]
+    filtered_df = df[df['Level'] == st.session_state.selected_level]
 
     # Prompt user for category
     category = st.selectbox("Select Topic", filtered_df['Topic'].unique())
