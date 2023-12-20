@@ -33,25 +33,23 @@ if 'selected_level' not in st.session_state:
 if 'selected_topic' not in st.session_state:
     st.session_state.selected_topic = None
 
-# Form to structure layout
-with st.form("main_form"):
-    # Prompt user for difficulty level
-    selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
+# Prompt user for difficulty level
+selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
 
-    # Save selected level in session state
-    st.session_state.selected_level = selected_level
+# Save selected level in session state
+st.session_state.selected_level = selected_level
 
-    # Filter data based on difficulty level
-    filtered_df = df[df['Level'] == st.session_state.selected_level]
+# Filter data based on difficulty level
+filtered_df = df[df['Level'] == st.session_state.selected_level]
 
-    # Prompt user for category
-    selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique(), key='topic')
+# Prompt user for category
+selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique(), key='topic')
 
-    # Save selected topic in session state
-    st.session_state.selected_topic = selected_topic
+# Save selected topic in session state
+st.session_state.selected_topic = selected_topic
 
-    # Button to generate question
-    generate_button = st.form_submit_button("Generate Question")
+# Button to generate question
+generate_button = st.button("Generate Question")
 
 # Generate a new question when the "Generate Question" button is clicked
 if generate_button:
@@ -72,7 +70,7 @@ if generate_button:
     st.write("🤔 Question:")
     st.write(st.session_state.current_question)
 
-# Buttons for the user to answer the question
+# Buttons for user to answer the question
 if st.session_state.question_generated:
     # Use columns to place buttons side by side
     col1, col2 = st.columns(2)
@@ -147,6 +145,7 @@ if reset_button:
     st.session_state.question_index = 0
     st.session_state.show_answer_and_explanation = False
     st.session_state.current_question = ""
+
 
 
 
