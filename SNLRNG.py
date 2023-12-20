@@ -114,7 +114,7 @@ if st.session_state.question_generated:
             if user_answer_str == correct_answer_str:
                 result_message = "✅ Correct! Well done! 🎉"
             else:
-                result_message = f"❌ Wrong. The correct answer is {correct_answer}."
+                result_message = f"❌ Wrong.The correct answer is {correct_answer}."
 
             st.write(f"Your Answer: {user_answer}")
             st.write(result_message)
@@ -147,4 +147,5 @@ if reset_button:
     st.session_state.question_index = 0
     st.session_state.show_answer_and_explanation = False
     st.session_state.current_question = ""
+
 
