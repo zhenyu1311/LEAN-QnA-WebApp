@@ -147,3 +147,4 @@ if reset_button:
     st.session_state.question_index = 0
     st.session_state.show_answer_and_explanation = False
     st.session_state.current_question = ""
+
