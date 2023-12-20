@@ -5,9 +5,9 @@ import random
 Created on Tue Dec 19 2023
 @author: He Zhenyu , GitHub ID: zhenyu1311
 @Bollore Logistics Asia-Pacific , Supply Chain Management Intern , He Zhenyu
-
 Last Update on Wed Dec 20 2023 2:30pm
 """
+
 df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
