@@ -23,27 +23,31 @@ if 'current_question' not in st.session_state:
 if 'selected_level' not in st.session_state:
     st.session_state.selected_level = None
 
-# Form to structure layout
-with st.form("main_form"):
-    # Prompt user for difficulty level
-    selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
+if 'selected_topic' not in st.session_state:
+    st.session_state.selected_topic = None
 
-    # Save selected level in session state
-    st.session_state.selected_level = selected_level
+# Prompt user for difficulty level
+selected_level = st.selectbox("Select Level", df['Level'].dropna().unique())
 
-    # Filter data based on difficulty level
-    filtered_df = df[df['Level'] == st.session_state.selected_level]
+# Save selected level in session state
+st.session_state.selected_level = selected_level
 
-    # Prompt user for category
-    category = st.selectbox("Select Topic", filtered_df['Topic'].unique())
+# Filter data based on difficulty level
+filtered_df = df[df['Level'] == st.session_state.selected_level]
 
-    # Button to generate question
-    generate_button = st.form_submit_button("Generate Question")
+# Prompt user for category
+selected_topic = st.selectbox("Select Topic", filtered_df['Topic'].unique())
+
+# Save selected topic in session state
+st.session_state.selected_topic = selected_topic
+
+# Button to generate question
+generate_button = st.button("Generate Question")
 
 # Generate a new question when the "Generate Question" button is clicked
 if generate_button:
-    # Filter data based on category
-    filtered_df = filtered_df[filtered_df['Topic'] == category]
+    # Filter data based on selected topic
+    filtered_df = filtered_df[filtered_df['Topic'] == st.session_state.selected_topic]
 
     # Generate a random question index
     st.session_state.question_index = random.randint(0, filtered_df.shape[0] - 1)
