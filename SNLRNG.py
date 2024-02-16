@@ -12,7 +12,7 @@ import random
 df = pd.read_csv('data.csv')
 
 # Create a Streamlit app
-st.title("🐍 LEAN SIX SIGMA QnA 🎲")
+st.title("🐍 LEAN QnA 🎲")
 
 # Initialize session state variables
 if 'question_generated' not in st.session_state:
